@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-const todoSchema = new mongoose.Schema({
+const todosSchema = new mongoose.Schema({
     text: String
-});
+}, { timestamps: true });
 
-const Todos = mongoose.model('Todo', todoSchema);
+const Todos = mongoose.model('Todos', todosSchema);
 
 export default Todos;

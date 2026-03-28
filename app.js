@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import TodosRouter from "./routes/todos/index.js";
+import AuthorsRouter from "./routes/authors/index.js";
+
 dotenv.config();
 
 
@@ -23,6 +25,7 @@ app.get("/", (_req, res) => {
     res.send("Hello, Express!");
 });
 app.use("/api/todos", TodosRouter)
+app.use("/api/authors", AuthorsRouter)
 
 
 app.listen(port, () => {
