@@ -4,6 +4,6 @@ export const normalizeAuthorUsername = (username) => {
     return username.toLowerCase();
 }
 
-export const hashPassword = async () => {
-    return await bcrypt.hash(data.password, 10);
+export const hashPassword = async (password) => {
+    return await bcrypt.hash(password, 10);
 }   

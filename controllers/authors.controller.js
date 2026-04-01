@@ -1,4 +1,4 @@
-import * as AuthorServices from "../services/authors.service.js";
+import * as authorServices from "../services/authors.service.js";
 
 /**
  * @desc Get all Authors
@@ -7,12 +7,8 @@ import * as AuthorServices from "../services/authors.service.js";
  * @access Public
  */
 export const getAuthors = async (req, res) => {
-    try {
-        const authors = await AuthorServices.getAllAuthors();
-        res.json(authors);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+    const authors = await authorServices.getAllAuthors();
+    res.status(200).json(authors);
 }
 
 /**
@@ -22,15 +18,11 @@ export const getAuthors = async (req, res) => {
  * @access Public
  */
 export const getAuthor = async (req, res) => {
-    try {
-        const author = await AuthorServices.getAuthorById(req.params.id)
-        if (!author) {
-            return res.status(404).json({ error: "Author not found" });
-        }
-        res.json(author)
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    const author = await authorServices.getAuthorById(req.params.id)
+    if (!author) {
+        return res.status(404).json({ error: "Author not found" });
     }
+    res.status(200).json(author)
 }
 
 /**
@@ -40,17 +32,9 @@ export const getAuthor = async (req, res) => {
  * @access Public
  */
 export const createAuthor = async (req, res) => {
-    try {
-        const newAuthor = await AuthorServices.createAuthor(req.body);
-        const { password, ...authorData } = newAuthor.toObject();
-        res.status(201).json(newAuthor);
-    } catch (err) {
-        if (err.code === 11000) {
-            res.status(409).json({ error: "Username already exists" });
-        } else {
-            res.status(500).json({ error: err.message });
-        }
-    }
+    const newAuthor = await authorServices.createAuthor(req.body);
+    const { password, ...authorData } = newAuthor.toObject();
+    res.status(201).json(authorData);
 }
 
 /**
@@ -60,15 +44,12 @@ export const createAuthor = async (req, res) => {
  * @access Public
  */
 export const deleteAuthor = async (req, res) => {
-    try {
-        const deleted = await AuthorServices.deleteAuthor(req.params.id);
-        if (!deleted) {
-            return res.status(404).json({ error: "Author not found" });
-        }
-        res.json(deleted);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    const deleted = await authorServices.deleteAuthor(req.params.id);
+    if (!deleted) {
+        return res.status(404).json({ error: "Author not found" });
     }
+    // res.status(204).send();
+    res.status(200).json(deleted);
 }
 
 
@@ -79,13 +60,9 @@ export const deleteAuthor = async (req, res) => {
  * @access Public
  */
 export const updateAuthor = async (req, res) => {
-    try {
-        const updated = await AuthorServices.updateAuthor(req.params.id, req.body);
-        if (!updated) {
-            return res.status(404).json({ error: "Author not found" });
-        }
-        res.json(updated);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    const updated = await authorServices.updateAuthor(req.params.id, req.body);
+    if (!updated) {
+        return res.status(404).json({ error: "Author not found" });
     }
+    res.status(200).json(updated);
 }

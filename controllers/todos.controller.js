@@ -6,12 +6,8 @@ import * as todosService from "../services/todos.service.js";
  * @access Public
  */
 export const getTodos = async (req, res) => {
-    try {
-        const todos = await todosService.getAllTodos();
-        res.json(todos);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+    const todos = await todosService.getAllTodos();
+    res.status(200).json(todos);
 }
 
 /**
@@ -21,58 +17,48 @@ export const getTodos = async (req, res) => {
  * @access Public
  */
 export const createTodo = async (req, res) => {
-    try {
-        const newTodo = await todosService.createTodo(req.body);
-        res.json(newTodo);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+    const newTodo = await todosService.createTodo(req.body);
+    res.status(201).json(newTodo);
 }
 
 /**
  * @desc Get single todo
- * @router /api/todo/:id
+ * @router /api/todos/:id
  * @method GET
  * @access Public
  */
 export const getSingleTodo = async (req, res) => {
-    try {
-        const todo = await todosService.getSingleTodo(req.params.id)
-        if (!todo) {
-            return res.status(404).json({ error: "Todo not found" });
-        }
-        res.json(todo);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    const todo = await todosService.getSingleTodo(req.params.id)
+    if (!todo) {
+        return res.status(404).json({ error: "Todo not found" });
     }
+    res.json(todo);
 }
 
 /**
  * @desc Update todo
- * @router /api/todo/:id
+ * @router /api/todos/:id
  * @method PUT
  * @access Public
  */
 export const updateTodo = async (req, res) => {
-    try {
-        const updated = await todosService.updateTodo(req.params.id, req.body);
-        res.json(updated);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    const updated = await todosService.updateTodo(req.params.id, req.body);
+    if (!updated) {
+        return res.status(404).json({ error: "Todo not found" });
     }
+    res.status(200).json(updated);
 }
 
 /**
  * @desc Delete todo
- * @router /api/todo/:id
+ * @router /api/todos/:id
  * @method DELETE
  * @access Public
  */
 export const deleteTodo = async (req, res) => {
-    try {
-        const deleted = await todosService.deleteTodo(req.params.id);
-        res.json(deleted);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    const deleted = await todosService.deleteTodo(req.params.id);
+    if (!deleted) {
+        return res.status(404).json({ error: "Todo not found" });
     }
+    res.status(204).send();
 }

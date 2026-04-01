@@ -1,5 +1,5 @@
 import * as authorsRepo from '../repositories/authors.repository.js'
-import { normalizeAuthorUsername } from '../utils/authors.utils.js';
+import { hashPassword, normalizeAuthorUsername } from '../utils/authors.utils.js';
 export const getAllAuthors = async () => {
     return await authorsRepo.findAll();
 }
