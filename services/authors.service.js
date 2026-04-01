@@ -1,5 +1,5 @@
 import * as authorsRepo from '../repositories/authors.repository.js'
-import bcrypt from "bcryptjs";
+import { normalizeAuthorUsername } from '../utils/authors.utils.js';
 export const getAllAuthors = async () => {
     return await authorsRepo.findAll();
 }
@@ -9,18 +9,21 @@ export const getAuthorById = async (id) => {
 }
 
 export const createAuthor = async (data) => {
-    // normalize username
     if (data.username) {
-        data.username = data.username.toLowerCase();
+        data.username = normalizeAuthorUsername(data.username);
     }
+    data.password = await hashPassword(data.password);
 
-    // hash password
-    if (data.password) {
-        data.password = await bcrypt.hash(data.password, 10);
-    }
     return await authorsRepo.createAuthor(data);
 }
 
 export const deleteAuthor = async (id) => {
     return await authorsRepo.deleteAuthor(id);
+}
+
+export const updateAuthor = async (id, data) => {
+    if (data.username) {
+        data.username = normalizeAuthorUsername(data.username);
+    }
+    return await authorsRepo.updateAuthor(id, data);
 }

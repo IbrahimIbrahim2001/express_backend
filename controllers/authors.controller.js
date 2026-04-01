@@ -70,3 +70,22 @@ export const deleteAuthor = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 }
+
+
+/**
+ * @desc UPDATE Author
+ * @router /api/authors/:id
+ * @method PUT
+ * @access Public
+ */
+export const updateAuthor = async (req, res) => {
+    try {
+        const updated = await AuthorServices.updateAuthor(req.params.id, req.body);
+        if (!updated) {
+            return res.status(404).json({ error: "Author not found" });
+        }
+        res.json(updated);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}

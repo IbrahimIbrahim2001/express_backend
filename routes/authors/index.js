@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { createAuthor, deleteAuthor, getAuthor, getAuthors } from "../../controllers/authors.controller.js";
-import { CreateAuthorSchema } from "../../validators/authors/index.js";
+import { createAuthor, deleteAuthor, getAuthor, getAuthors, updateAuthor } from "../../controllers/authors.controller.js";
+import { CreateAuthorSchema, UpdateAuthorSchema } from "../../validators/authors/index.js";
 import { validate } from "../../middlewares/validator.js";
 
 const router = Router();
@@ -20,5 +20,9 @@ router.post('/', validate(CreateAuthorSchema), createAuthor);
 // DELETE author
 // /api/authors/:id
 router.delete('/:id', deleteAuthor);
+
+// UPDATE author
+// /api/authors/:id
+router.put('/:id', validate(UpdateAuthorSchema), updateAuthor);
 
 export default router;

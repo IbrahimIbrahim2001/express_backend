@@ -41,3 +41,26 @@ export const CreateAuthorSchema = Joi.object({
         .optional()
         .allow("", null),
 });
+
+export const UpdateAuthorSchema = Joi.object({
+    first_name: Joi.string()
+        .min(2)
+        .max(50)
+        .optional(),
+
+    last_name: Joi.string()
+        .min(2)
+        .max(50)
+        .optional(),
+
+    username: Joi.string()
+        .alphanum()
+        .min(3)
+        .max(30)
+        .optional(),
+
+    address: Joi.string()
+        .max(200)
+        .optional()
+        .allow("", null),
+})

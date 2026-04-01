@@ -16,3 +16,7 @@ export const createAuthor = async (data) => {
 export const deleteAuthor = async (id) => {
     return await Authors.findByIdAndDelete(id);
 }
+
+export const updateAuthor = async (id, data) => {
+    return await Authors.findByIdAndUpdate(id, data, { new: true });
+}
