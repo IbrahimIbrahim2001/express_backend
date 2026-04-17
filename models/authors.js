@@ -14,7 +14,17 @@ const authorsSchema = mongoose.Schema({
     password: { type: String, required: true },
     address: { type: String, trim: true },
     // birthplace: { type: Date },
-}, { timestamps: true });;
+}, {
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
+});;
+
+authorsSchema.virtual("books", {
+    ref: "Books",
+    localField: "_id",
+    foreignField: "author"
+});
 
 const Authors = mongoose.model("Authors", authorsSchema);
 

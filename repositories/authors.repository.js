@@ -1,11 +1,11 @@
 import Authors from "../models/authors.js";
 
 export const findAll = async () => {
-    return await Authors.find()
+    return await Authors.find().populate("books");
 }
 
 export const findById = async (id) => {
-    return await Authors.findById(id);
+    return await Authors.findById(id).populate("books");
 }
 
 export const createAuthor = async (data) => {

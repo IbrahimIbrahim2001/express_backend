@@ -5,6 +5,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import TodosRouter from "./routes/todos/index.js";
 import AuthorsRouter from "./routes/authors/index.js";
+import BooksRouter from "./routes/books/index.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.get("/", (_req, res) => {
 });
 app.use("/api/todos", TodosRouter)
 app.use("/api/authors", AuthorsRouter)
+app.use("/api/books", BooksRouter)
 
 
 app.listen(port, () => {
