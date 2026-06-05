@@ -7,7 +7,7 @@ import * as UserService from "../services/users.service.js";
  * @access Private
  */
 export const getUserData = async (req, res) => {
-    const user = await AuthService.getUserData(req.params.id);
+    const user = await UserService.getUserData(req.params.id);
     res.status(200).json({
         success: true,
         data: user
@@ -21,5 +21,9 @@ export const getUserData = async (req, res) => {
  * @access Private
  */
 export const updateUser = async (req, res) => {
-
+    const user = await UserService.updateUser(req.params.id, req.body);
+    res.status(200).json({
+        success: true,
+        data: user
+    })
 }

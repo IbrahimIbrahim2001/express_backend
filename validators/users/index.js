@@ -15,4 +15,4 @@ export const validateUpdateUserSchema = Joi.object({
     name: Joi.string().min(2).max(50),
     email: Joi.string().email(),
     password: Joi.string().min(6).max(20)
-}).or("name", "email", "password");
+});
