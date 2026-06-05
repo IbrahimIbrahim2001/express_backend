@@ -6,6 +6,7 @@ import connectDB from "./config/db.js";
 import TodosRouter from "./routes/todos/index.js";
 import AuthorsRouter from "./routes/authors/index.js";
 import BooksRouter from "./routes/books/index.js";
+import AuthRouter from "./routes/auth/index.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.get("/", (_req, res) => {
 app.use("/api/todos", TodosRouter)
 app.use("/api/authors", AuthorsRouter)
 app.use("/api/books", BooksRouter)
+app.use("/api/auth", AuthRouter)
 
 
 app.listen(port, () => {
