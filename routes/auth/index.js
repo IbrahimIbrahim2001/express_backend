@@ -12,7 +12,7 @@ router.post("/register", validate(validateRegisterUserSchema), expressAsyncHandl
 
 // login 
 // /api/auth/login
-router.get("/login", validate(validateLoginUserSchema), expressAsyncHandler(login));
+router.post("/login", validate(validateLoginUserSchema), expressAsyncHandler(login));
 
 // get user data
 // /api/auth/user/:id
