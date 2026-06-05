@@ -7,11 +7,3 @@ export const registerNewUser = async (data) => {
 export const loginUser = async (data) => {
     return await AuthRepo.loginUser(data);
 }
-
-export const getUserData = async (id) => {
-    return await AuthRepo.getUserData(id);
-}
-
-export const updateUser = async (id, data) => {
-    return await AuthRepo.updateUser(id, data);
-}

@@ -27,23 +27,3 @@ export const login = async (req, res) => {
         data: token
     })
 }
-
-/**
-//  * TODO: update this
- * @desc get user data
- * @router /api/auth/
- * @method GET
- * @access Private
- */
-export const getUserData = async (req, res) => {
-    const user = await AuthService.getUserData(req.params.id);
-    res.status(200).json({
-        success: true,
-        data: user
-    })
-}
-
-
-export const updateUser = async (req, res) => {
-
-}

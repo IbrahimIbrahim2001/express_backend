@@ -40,10 +40,3 @@ export const loginUser = async (data) => {
     });
     return { user, token };
 }
-
-export const getUserData = (id) => {
-}
-
-export const updateUser = (id, data) => {
-
-}

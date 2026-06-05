@@ -7,9 +7,9 @@ import TodosRouter from "./routes/todos/index.js";
 import AuthorsRouter from "./routes/authors/index.js";
 import BooksRouter from "./routes/books/index.js";
 import AuthRouter from "./routes/auth/index.js";
+import UserRouter from "./routes/user/index.js";
 
 dotenv.config();
-
 
 // dev flow: Model → Repository → Service → Validation → Middleware → Controller → Routes → app.js(server.js || index.js)
 const app = express()
@@ -30,7 +30,7 @@ app.use("/api/todos", TodosRouter)
 app.use("/api/authors", AuthorsRouter)
 app.use("/api/books", BooksRouter)
 app.use("/api/auth", AuthRouter)
-
+app.use("/api/user", UserRouter)
 
 app.listen(port, () => {
     console.log(`app listening on port ${port}`)
