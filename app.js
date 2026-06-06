@@ -8,6 +8,8 @@ import AuthorsRouter from "./routes/authors/index.js";
 import BooksRouter from "./routes/books/index.js";
 import AuthRouter from "./routes/auth/index.js";
 import UserRouter from "./routes/user/index.js";
+import helmet from "helmet";
+
 
 dotenv.config();
 
@@ -18,8 +20,13 @@ const port = process.env.PORT || "3030";
 // Connect to DB
 connectDB();
 
+
+app.use(helmet());
+
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: `http://localhost:${process.env.PORT}` || "http://localhost:3030",
+}));
 app.use(express.json());
 
 // Routes
